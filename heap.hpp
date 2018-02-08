@@ -10,19 +10,23 @@ typedef int32_t obj_ptr;
 // All addresses on the heap are relative to the `from` pointer.
 // For example, allocating an object on an empty heap will give it
 // an address 0. Because of this, we use a special constant nil_ptr
-// to indicate nil pointers. 
+// to indicate nil pointers.
 //
 static const obj_ptr nil_ptr(-1);
 
 // The enum below will always be the first member of all structs
 // that can be allocated on the heap. It tags the object with its
-// type, making it possible to easily cast a byte pointer to a 
+// type, making it possible to easily cast a byte pointer to a
 // pointer to an appropriate struct. This is also useful
 // when calculating struct sizes and offsets.
 // The object type tag will always be a single byte in size.
-// 
+//
 enum object_type : byte {
-  FOO, BAR, BAZ
+  // Set these to values you're unlikely to find in uninitialized
+  // memory to have a better shot at detecting errors:
+  FOO = 42,
+  BAR = 13,
+  BAZ = 34
 };
 
 // There are three possible objects we can allocate on the heap,
