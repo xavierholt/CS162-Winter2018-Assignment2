@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
       continue;
     }
 
-    int pos = line.find('=');
+    size_t pos = line.find('=');
     if(pos == std::string::npos) {
       std::cerr << "Bad command: " << line << '\n';
       continue;

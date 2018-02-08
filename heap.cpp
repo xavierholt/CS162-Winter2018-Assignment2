@@ -58,13 +58,20 @@ object_type Heap::get_object_type(obj_ptr ptr) {
 
 // Finds fields by path / name; used by get() and set().
 obj_ptr *Heap::get_nested(const std::vector<std::string>& path) {
+  std::string current = path.at(0);
   obj_ptr init = get_root(path[0]);
   obj_ptr *fld = &init;
 
-  for(int i = 1; i < path.size(); ++i) {
+  for(size_t i = 1; i < path.size(); ++i) {
+    if(*fld == nil_ptr) {
+      std::string message("Nil pointer while getting: ");
+      throw std::runtime_error(message + current);
+    }
+
     auto addr = *fld;
     auto type = get_object_type(addr);
     auto seg  = path[i];
+    current  += "." + seg;
 
     switch(type) {
     case FOO: {
