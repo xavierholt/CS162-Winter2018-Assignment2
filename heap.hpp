@@ -22,8 +22,8 @@ static const obj_ptr nil_ptr(-1);
 // The object type tag will always be a single byte in size.
 //
 enum object_type : byte {
-  // Set these to values you're unlikely to find in uninitialized
-  // memory to have a better shot at detecting errors:
+  // These are set to values you're unlikely to find in uninitialized
+  // memory so you have a better shot at detecting errors:
   FOO = 42,
   BAR = 13,
   BAZ = 34
@@ -113,7 +113,7 @@ class Heap {
   // are relative to the from pointer). If you were to allocate objects of sizes 5 and 10
   // on an empty heap, and assign them to x and y, your root set would look like this:
   // x -> 0
-  // y -> 10
+  // y -> 5
   std::map<std::string, obj_ptr> root_set;
   // This is the object id counter, it assigns every new object a unique id.
   // You don't need to touch this in any way.

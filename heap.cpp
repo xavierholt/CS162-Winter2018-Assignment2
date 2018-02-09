@@ -28,7 +28,7 @@ void Heap::debug() {
 // For example, the first allocated object would have the address 0.
 // IMPORTANT: This method should initiate garbage collection when there is not
 // enough memory. If there is still insufficient memory after garbage collection,
-// this method should throw an out_of_memory exception.
+// this method should throw an OutOfMemoryException.
 obj_ptr Heap::allocate(int32_t size) {
   // Implement me
 }
